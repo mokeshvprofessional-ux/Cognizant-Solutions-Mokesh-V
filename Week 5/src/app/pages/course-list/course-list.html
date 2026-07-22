@@ -1,0 +1,39 @@
+<hr>
+
+<label>Search Course:</label>
+
+<br><br>
+
+<input
+  type="text"
+  [(ngModel)]="searchTerm"
+  (input)="updateSearch()"
+  placeholder="Enter course name">
+
+<p>Search: {{ searchTerm }}</p>
+
+<hr>
+
+<h2>Course List</h2>
+
+<ul>
+  <li *ngFor="let course of courses">
+
+    <span
+      (click)="viewCourse(course.id)"
+      style="cursor: pointer; color: blue; text-decoration: underline;">
+
+      {{ course.name }}
+      ({{ course.code }})
+      - Credits: {{ course.credits }}
+
+    </span>
+
+    <button (click)="toggleEnrollment(course.id)">
+      {{ enrollmentService.isEnrolled(course.id)
+          ? 'Unenroll'
+          : 'Enroll' }}
+    </button>
+
+  </li>
+</ul>

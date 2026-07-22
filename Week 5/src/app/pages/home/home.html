@@ -1,0 +1,79 @@
+<app-course-summary-widget></app-course-summary-widget>
+
+<h2>{{ portalName }}</h2>
+
+<p>Welcome to Student Course Portal</p>
+
+<hr>
+
+<label>Search Course:</label>
+<br><br>
+
+<input
+  type="text"
+  [(ngModel)]="searchTerm"
+  placeholder="Enter course name">
+
+<p>Searching for: <strong>{{ searchTerm }}</strong></p>
+
+<hr>
+
+<button
+  (click)="onEnrollClick()"
+  [disabled]="!isPortalActive">
+  Enroll Now
+</button>
+
+<h3 *ngIf="coursesAvailable">
+    Courses Available
+</h3>
+
+<ul>
+  <li *ngFor="let course of courses">
+    {{ course }}
+  </li>
+</ul>
+
+<p *ngIf="!coursesAvailable">
+    No courses available.
+</p>
+
+<hr>
+
+<h3>Course Status</h3>
+
+<div [ngSwitch]="status">
+
+  <p *ngSwitchCase="'Active'">
+    🟢 Course Registration is Open
+  </p>
+
+  <p *ngSwitchCase="'Inactive'">
+    🔴 Course Registration is Closed
+  </p>
+
+  <p *ngSwitchDefault>
+    ⚪ Status Unknown
+  </p>
+
+</div>
+
+<hr>
+
+<h3>Portal Status</h3>
+
+<p [ngClass]="isActive ? 'active' : 'inactive'">
+    Student Portal
+</p>    
+
+<hr>
+
+<hr>
+
+<hr>
+
+<h3>Portal Statistics</h3>
+
+<p>Total Courses : {{ courseCount }}</p>
+
+<p>{{ message }}</p>
